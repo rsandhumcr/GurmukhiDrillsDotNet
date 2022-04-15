@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <NETStandardImplicitPackageVersion>1.1.0</NETStandardImplicitPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Infrastructure\AutoMapper\TypeTypeConverterCategoryToCategoryItemApi.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbGurumukhiMsSql\DbGurmukhiMsSql.csproj" />
+    <ProjectReference Include="..\LetterTranslation\LetterTranslation.csproj" />
+    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\MultipleChoiceGenerator\MultipleChoiceGenerator.csproj" />
+  </ItemGroup>
+
+</Project>

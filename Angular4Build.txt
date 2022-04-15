@@ -1,0 +1,7 @@
+node node_modules/webpack/bin/webpack.js --env.prod
+
+
+https://github.com/MarkPieszak/aspnetcore-angular2-universal/issues/306
+
+webpack.config.js
+include: ClientApp // just remove this part so it takes in node_modules as well during AoT

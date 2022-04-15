@@ -1,0 +1,20 @@
+Hash: 410e0e0838a693368b7df20476679eb1e7930bec
+Version: webpack 2.5.1
+Child
+    Hash: 410e0e0838a693368b7d
+    Time: 25993ms
+                                   Asset     Size  Chunks                    Chunk Names
+    f31c6b812f6bd97f887d0852c11d02cb.jpg  65.2 kB          [emitted]         
+                          main-client.js   765 kB       0  [emitted]  [big]  main-client
+    Child ClientApp\app\components\home\home.component.html:
+                                       Asset     Size  Chunks             Chunk Names
+        f31c6b812f6bd97f887d0852c11d02cb.jpg  65.2 kB          [emitted]  
+Child
+    Hash: f20476679eb1e7930bec
+    Time: 25987ms
+                                   Asset     Size  Chunks                    Chunk Names
+    f31c6b812f6bd97f887d0852c11d02cb.jpg  65.2 kB          [emitted]         
+                          main-server.js  4.22 MB       0  [emitted]  [big]  main-server
+    Child ClientApp\app\components\home\home.component.html:
+                                       Asset     Size  Chunks             Chunk Names
+        f31c6b812f6bd97f887d0852c11d02cb.jpg  65.2 kB          [emitted]  

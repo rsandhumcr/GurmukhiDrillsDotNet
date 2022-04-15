@@ -1,0 +1,25 @@
+Publishing issues.
+
+Need to run following to find AOT issues.
+
+node node_modules/webpack/bin/webpack.js --env.prod
+
+	runFindAOTCompileErrors.bat
+or pipe to file
+	node node_modules/webpack/bin/webpack.js --env.prod >> hiddenerrors.txt
+
+
+Did add 
+    'angular2-toaster',
+    'ngx-bootstrap/carousel',
+.. to webpack.config.vendor.js  ' const treeShakableModules = [ '
+
+https://github.com/MarkPieszak/aspnetcore-angular2-universal/issues/306
+
+webpack.config.js
+include: ClientApp // just remove this part so it takes in node_modules as well during AoT
+
+    module: {
+        rules: [
+            //{ test: /\.ts$/, include: /ClientApp/, use: isDevBuild ? ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] : '@ngtools/webpack' },
+            { test: /\.ts$/,  use: isDevBuild ? ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] : '@ngtools/webpack' },

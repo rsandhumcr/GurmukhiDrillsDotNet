@@ -1,0 +1,152 @@
+﻿@using WebGurmukhiDrills.Infrastructure
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IConfigureHolder configureHolder
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aids the learning of Gurmukhi via English. Gurmukhi is a Sikh script modified, standardized and used by the second Sikh Guru, Guru Angad.">
+    <meta name="keywords" content="gurmukhi drills,gurmukhi,sikh,punjabi,punjab,language,indian,india,guru,Script,word,letters,practice,exercises,drills,letter">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="r sandhu">
+    <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+    <meta property="og:title" content="Learn Gurmukhi">
+    <meta property="og:image" content="www.gurmukhidrills.co.uk/images/SuperSikh.jpg">
+    <meta property="og:url" content="www.gurmukhidrills.co.uk/">
+    <meta property="og:site_name" content="Gurmukhi Drills">
+    <meta property="og:description" content="Learn and test your Gurmukhi">
+
+    <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@@gurmukhi_drills">
+    <meta name="twitter:title" content="Learn Gurmukhi">
+    <meta name="twitter:description" content="Learn and test your Gurmukhi">
+    <meta name="twitter:image" content="www.gurmukhidrills.co.uk/images/SuperSikh.jpg">
+
+    <title>@ViewData["Title"] - Gurmukhi Drills The Sikh Language</title>
+    <base href="~/" />
+    @*<link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/css/one-page-wonder.min.css" rel="stylesheet" asp-append-version="true">*@
+    <link href="~/vendorfixed/bootstraponepagewonder.css" rel="stylesheet" asp-append-version="true">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="~/home/">Gurmukhi Drills</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  @((string)ViewData["link"]=="index" ? "active" : "")">
+                        <a class="nav-link" href="~/home/">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/home/Exercise">Exercises</a>
+                    </li>
+                    <li class="nav-item  @((string)ViewData["link"]=="otherresouces" ? "active" : "")">
+                        <a class="nav-link" href="~/home/OtherResources">Other Resources</a>
+                    </li>
+                    <li class="nav-item  @((string)ViewData["link"]=="contactus" ? "active" : "")">
+                        <a class="nav-link" href="~/home/ContactUs">Contact</a>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item  @((string) ViewData["link"] == "Manage" ? "active" : "")">
+                                    <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+                                </li>
+                                <li class="nav-item  @((string) ViewData["link"] == "logout" ? "active" : "")">
+                                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                    else
+                    {
+                        if (configureHolder.ShowRegistration)
+                        {
+                            <li class="nav-item  @((string) ViewData["link"] == "register" ? "active" : "")">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+                        if (configureHolder.ShowLogin)
+                        {
+                            <li class="nav-item  @((string) ViewData["link"] == "login" ? "active" : "")">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+<header class="masthead">
+    <div class="overlay">
+        <div class="container">
+            <h1 class="display-1 text-white">Gurmukhi</h1>
+            <h2 class="display-4 text-white">From the mouth of the Guru</h2>
+        </div>
+    </div>
+</header>
+<div class="fb-like" data-href="http://www.gurmukhidrills.co.uk" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div id="fb-root"></div>
+<a href="https://twitter.com/intent/tweet?screen_name=gurmukhi_drills&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @@gurmukhi_drills</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    @RenderBody()
+  
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Gurmukhi Drills 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <script src="vendorfixed/jquerybootstrap.js" asp-append-version="true"></script>
+
+
+
+    @RenderSection("scripts", required: false)
+    <script>
+(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111193506-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111193506-2');
+    </script>
+<script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Person",
+        "name": "Gurmukhi Drills",
+        "url": "http://www.gurmukhidrills.co.uk",
+        "sameAs": [
+        "https://www.facebook.com/gurmukhi.drills.3",
+        "https://twitter.com/gurmukhi_drills"
+        ]
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<h3>Word Slides</h3>
+<div>
+    <span>This page will display the a set of slides of the words in the selected category and subcategory.</span>
+</div>
+<div>
+    <span>First select the category and then the subcategory.</span>
+</div>
+<div class="row margintop5">
+    <div class="col-sm-6 col-xm-12">
+        <app-categoryselect (cateogryselected)="onCateogryselected($event)" (subcateogryselected)="onSubcateogryselected($event)"></app-categoryselect>
+    </div>
+</div>
+<h3>{{categorynane}}</h3>
+<h4>{{subcategorynane}}</h4>
+<div *ngIf="!showSlide()">
+    Select a catgory and subcateogry to display slides.
+</div>
+<div *ngIf="showSlide()">
+    <carousel #carouselComponent [(activeSlide)]="activeSlideIndex" noPause="false" (activeSlideChange)="onSlideChanged($event)">
+        <slide class="lettertemplate"  *ngFor="let word of wordtranslationData?.listTransation">
+            <div class="row bkslide">
+                <div class="col-sm-3 col-xs-2 "></div>
+                <div class="col-sm-6 col-xs-10 slidecontent">
+                    <div class="title">{{word.english}}</div>
+                    <div>
+                        <span *ngIf="word.imageFileName"><img class="listimg" src="{{wordtranslationData.imagePrefix}}/{{word.imageFileName}}" /></span>
+                    </div>
+                    <div class="subtitle punjabiletter">{{word.punjabi}}</div>
+                    <div class="title englishletter">{{word.character}}</div>
+                    <div class="title englishletter">{{word.equivalent}}</div>
+                    <div *ngIf="!!word.description">
+                        {{word.description}}
+                    </div>
+                </div>
+            </div>
+        </slide>
+    </carousel>
+</div>

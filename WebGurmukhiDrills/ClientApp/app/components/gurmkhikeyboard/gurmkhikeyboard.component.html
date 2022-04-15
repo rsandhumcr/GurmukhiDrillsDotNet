@@ -1,0 +1,14 @@
+﻿<div>
+        <input class="kybinputtext" *ngIf="inputmode" [disabled]="disabledkybr"  type="text" #mykeyboardinput (change)="onInputChange()" (click)="getCaretPos(mykeyboardinput)" (keyup)="getCaretPos(mykeyboardinput)" [(ngModel)]="currentText"/>
+        <textarea class="kybinputtext" rows="4" cols="50" *ngIf="!inputmode" [disabled]="disabledkybr"  #mykeyboardinput (change)="onInputChange()" (click)="getCaretPos(mykeyboardinput)" (keyup)="getCaretPos(mykeyboardinput)" [(ngModel)]="currentText" ></textarea>
+        <button *ngIf="showKeyboardButton" [disabled]="disabledkybr"  class="nopaddingnomargin" (click)="onToggerKeyboard()"><img src="../../../../wwwroot/images/keyboard.png" /></button>
+        <button *ngIf="buttontext" class="btn btn-xs btn-primary" (click)="onClickButtonresponse()" >{{buttontext}}</button>
+</div>
+<div *ngIf="showKeyboard" [ngClass]="setkeyboardbkclass()">
+    <div class="row keyboardrow" *ngFor="let row of keyboard; let lastkey = last">
+        <div class="col-sm-12">
+            <button [disabled]="disabledkybr" [ngClass]="setbtnclass()" *ngFor="let ky of row" (click)="onButtonClick(ky, mykeyboardinput)">{{ky}}</button>
+            <span *ngIf="lastkey">{{currentIndex()}}</span>
+        </div>
+    </div>
+</div>

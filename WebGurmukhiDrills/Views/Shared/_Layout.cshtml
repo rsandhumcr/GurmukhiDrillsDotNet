@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aids the learning of Gurmukhi via English. Gurmukhi is a Sikh script modified, standardized and used by the second Sikh Guru, Guru Angad.">
+    <meta name="keywords" content="gurmukhi drills,gurmukhi,sikh,punjabi,punjab,language,indian,india,guru,Script,word,letters,practice,exercises,drills,letter">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="r sandhu">
+    <title>@ViewData["Title"] - Gurmukhi Drills The Sikh Language</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/vendor/toastr/toastr.min.css" asp-append-version="true" />
+
+</head>
+<body style="overflow-y: scroll;">
+    @RenderBody()
+    @RenderSection("scripts", required: false)
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111193506-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111193506-2');
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Person",
+        "name": "Gurmukhi Drills",
+        "url": "http://www.gurmukhidrills.co.uk",
+        "sameAs": [
+        "https://www.facebook.com/gurmukhi.drills.3",
+        "https://twitter.com/gurmukhi_drills"
+        ]
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿.bannerimg {
+    width: 100%;
+    /*background-size: cover;*/
+    margin: 0;
+}
+
+.holder {
+    background-image: url('../../../../wwwroot/images/indiabanner.jpg');
+    background-size: cover;
+}
+
+.margintop5 {
+    margin-top: 5px;
+}
+
+.margintop15 {
+    margin-top: 15px;
+}
+
+div div div img.rounded-circle {
+    border-radius: 50% !important;
+}
+
+div div div img.minheight {
+    width: 100px;
+}
+
+
+header.masthead {
+    background: url('/images/intro/Golden-Temple-Amritsar2.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+header.masthead>.overlay {
+    padding: 5rem 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+.text-white {
+    color: white;
+}
+

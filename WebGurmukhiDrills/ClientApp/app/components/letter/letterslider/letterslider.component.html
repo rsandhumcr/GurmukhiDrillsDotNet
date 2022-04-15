@@ -1,0 +1,27 @@
+﻿<letter-slider-menu></letter-slider-menu>
+<h2>Letter Slides</h2>
+<p>Other groups can be selected via the menu above.</p>
+<div *ngIf="data">
+    <H3>{{data?.groupTitle}} Group</H3>
+    <carousel #carouselComponent [(activeSlide)]="activeSlideIndex" noPause="false" (activeSlideChange)="onSlideChanged($event)">
+        <slide class="lettertemplate"  *ngFor="let letter of data?.letters">
+            <div class="container">
+                <div class="row bkslide">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6 col-xs-12 slidecontent">
+                        <span class="title">{{letter.order}} {{letter.name}}</span>
+                        <span class="subtitle punjabiletter">{{letter.punjabi}}</span>
+                        <span class="subtitle englishletter">{{letter.english}}</span>
+                        <div>
+                            <span *ngIf="letter.image1"><img src="{{data.imagePrefix}}/{{letter.image1}}"/></span>
+                            <span *ngIf="letter.image"><img class="letter" src="{{data.imagePrefix}}/{{letter.image}}"/></span>
+                        </div>
+                        <div *ngIf="!!letter.description">
+                            {{letter.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>                
+        </slide>
+    </carousel>
+</div>

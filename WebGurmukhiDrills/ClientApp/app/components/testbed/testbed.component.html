@@ -1,0 +1,16 @@
+﻿<h3>Testbed</h3>
+<div><span>This page is used to test components.</span></div>
+<h4>Gurmukhi Keyboard</h4>
+<app-gurmkhikeyboard [inputmode]="false"
+                     [showKeyboardButton]="false" 
+                     [floatkeyboard] ="false"
+                     (textChange)="onTextChange($event)"
+                     (buttonresponse)="onClickbuttonresponse()">
+    
+</app-gurmkhikeyboard>
+<h4>Message popups</h4>
+<div>
+    <button class="btn btn-info" (click)="popToast()">Test Popups</button>
+</div>
+
+

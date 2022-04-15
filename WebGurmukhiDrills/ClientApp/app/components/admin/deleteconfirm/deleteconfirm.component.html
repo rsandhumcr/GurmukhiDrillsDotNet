@@ -1,0 +1,95 @@
+﻿<h2>Delete</h2>
+
+<div [hidden]="!deletedRequestSent">
+    <div><span>Deleted {{deleteType}} '{{deleteName}}' ({{deleteId}})</span></div>
+</div>
+<div [hidden]="deletedRequestSent">
+    <div *ngIf="categoryData?.id">
+        <h3>Category</h3>
+        <div class="row">
+            <div class="col-sm-2">Category Id</div>
+            <div class="col-sm-10">{{categoryData.id}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Name</div>
+            <div class="col-sm-10">{{categoryData.name}}</div>
+        </div>
+    </div>
+    <div *ngIf="subCategoryData?.id">
+        <h3>SubCategory</h3>
+        <div class="row">
+            <div class="col-sm-2">SubCategory Id</div>
+            <div class="col-sm-10">{{subCategoryData.id}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Category Id</div>
+            <div class="col-sm-10">{{subCategoryData.categoryId}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Name</div>
+            <div class="col-sm-10">{{subCategoryData.name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Url</div>
+            <div class="col-sm-10">{{subCategoryData.url}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Order</div>
+            <div class="col-sm-10">{{subCategoryData.orderNumber}}</div>
+        </div>
+    </div>
+    <div *ngIf="wordTranslationData?.id">
+        <h3>Translation</h3>
+        <div class="row">
+            <div class="col-sm-2">Translation Id</div>
+            <div class="col-sm-10">{{wordTranslationData.id}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">SubCategory Id</div>
+            <div class="col-sm-10">{{wordTranslationData.subCategoryId}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">English</div>
+            <div class="col-sm-10">{{wordTranslationData.english}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Punjabi</div>
+            <div class="col-sm-10">{{wordTranslationData.punjabi}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Character</div>
+            <div class="col-sm-10">{{wordTranslationData.character}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Equivalent</div>
+            <div class="col-sm-10">{{wordTranslationData.equivalent}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Description</div>
+            <div class="col-sm-10">{{wordTranslationData.description}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Audio Filename</div>
+            <div class="col-sm-10">{{wordTranslationData.audioFileName}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Image Filename</div>
+            <div class="col-sm-10">{{wordTranslationData.imageFileName}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Order Number</div>
+            <div class="col-sm-10">{{wordTranslationData.orderNumber}}</div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <div class="row">
+            <div class="col-sm-2">Review and confirm deletion</div>
+            <div class="col-sm-10"><input type="checkbox" [(ngModel)]="confirmdelete" /></div>
+        </div>
+        <div class="row" *ngIf="confirmdelete">
+            <div class="col-sm-2">Delete action</div>
+            <div class="col-sm-10"><button class="btn btn-danger btn-sm" (click)="deleteentry()">Delete</button></div>
+        </div>
+    </div>
+</div>

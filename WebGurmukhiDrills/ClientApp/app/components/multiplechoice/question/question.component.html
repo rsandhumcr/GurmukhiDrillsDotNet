@@ -1,0 +1,24 @@
+﻿<div class="row leftmargin">
+    <div class="col-sm-4 col-xs-12 questionsection">
+        <div class="questionblock">
+        <div class="multiquestionlabel">Question {{question?.index + 1}}</div>
+            <div>
+                <app-questioncontext [layoutContexts]="question?.layoutQuestion" [audiopath]="audiopath" [imagepath]="imagepath" [contextclass]="'qustcntxt'"></app-questioncontext>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7 col-xs-12">
+        <div><button class="btn btn-warning btn-xs nextquestbtn" (click)="onClickNextQuestion()">Next Question</button>
+        </div>
+        Answers
+        <div class="row">
+            <div *ngFor="let anw of question?.listAnwsers; let i = index">
+                <div class="col-xs-6 anwsersection">
+                    <button class="btn btn-xs optionbtn" [ngClass]="setBtnClass(anw)" (click)="onAnwserClick(anw)" [disabled]="question.anwsered">Option {{anw.optionLabel}}</button><i *ngIf="anw.isSelected" class="glyphicon glyphicon-check"></i>
+                    <app-questioncontext [layoutContexts]="anw.listLayout" [audiopath]="audiopath" [imagepath]="imagepath"  [contextclass]="'anwsrcntxt'" ></app-questioncontext>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

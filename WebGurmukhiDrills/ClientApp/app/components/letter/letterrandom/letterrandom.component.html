@@ -1,0 +1,68 @@
+﻿<h3>Random Words</h3>
+<div class="randomdescription" *ngIf="!showQuestions">
+    <div>
+        <span>This page will generate random letters depending upon the letter groups selected via the checkboxes. </span>
+        <span>You can choose the language the you must to translate to via the 'Anwser in language' radio buttons.</span>
+        <span>You can determine the length and number of questions you must anwser.</span>
+        <span>When you have made you choices click the 'Generate Letters' button.</span>
+    </div>
+    <h4>Question options</h4>
+    <div class="row paddingtop5">
+        <div class="col-sm-2"><label>Length of words</label></div>
+        <div class="col-sm-2">
+            <input class="form-control" type="number" [(ngModel)]="letterlength" />
+        </div>
+    </div>
+    <div class="row paddingtop5">
+        <div class="col-sm-2"><label>No of words</label></div>
+        <div class="col-sm-2">
+            <input class="form-control" type="number" [(ngModel)]="noofletters" />
+        </div>
+    </div>
+    <div class="row paddingtop5">
+        <div class="col-sm-2"><label>Anwser in English</label>
+        </div>
+        <div class="col-sm-2 ">
+            <input class="upshift langradio" type="radio" value="english" [(ngModel)]="language"/>
+        </div>
+    </div>
+    <div class="row paddingtop5">
+       <div class="col-sm-2"><label>Anwser in Punjabi</label></div>
+        <div class="col-sm-2 ">
+            <input name="punjabiRadio" class="upshift langradio" type="radio" value="punjabi" [(ngModel)]="language" />
+        </div>
+    </div>
+    <app-lettergroupselectionlist *ngIf="!showQuestions" [titlehead]="'Group Selection'" (processselection)="onGroupSelection($event)"
+                                  [buttonlabel]="'Generate Letters'"></app-lettergroupselectionlist>
+</div>
+<div class="randomquestions" *ngIf="showQuestions">
+    <div>
+        <span>You will need to enter the corrsponding translation into the text field below.</span>
+        <span>You will get instant feedback with blue and red text.</span>
+        <span>When you have anwsered the question you select another question from the question selection buttons or click 'Next Question' button.</span>
+        <span>You can click the hint button if you get stuck.</span>
+    </div>
+    <div class="margin10">
+        <span>The following characters are contained in the matching anwser :</span>
+    </div>
+    <div *ngIf="isPunjabi()">
+        <span class="punjabiletters selectionletters" *ngFor="let punletter of randomData.punjabiLetters">{{punletter}}&nbsp;</span>
+    </div>
+    <div *ngIf="!isPunjabi()">
+        <span class="englishletters selectionletters" *ngFor="let engletter of randomData.englishLetters">{{engletter}}&nbsp;</span>
+    </div>
+    <app-letterrandomselection [questions]="randomData.questions" (indexselection)="onClickIndexselection($event)"></app-letterrandomselection>
+    <h4>Question {{currentIndex + 1}}</h4>
+    <button class="btn btn-xs btn-warning" (click)="onClickNextQuestion()">Next Question</button>
+    <button class="btn btn-xs btn-success" (click)="onClickHint()">Hint</button>
+    <button class="btn btn-xs btn-primary" (click)="onClickShowAnwser()">Show Anwser</button>
+    <div>
+        <span class="hinttext">{{this.selectedRandomQuestion.feedback[0]}}</span>    
+    </div>
+    <div *ngIf="isPunjabi()">
+        <app-letterrandompunjabi *ngIf="selectedRandomQuestion" [randomQuestion]="selectedRandomQuestion" (resetquestions)="onClickResetQuestion()"></app-letterrandompunjabi>
+    </div>
+    <div *ngIf="!isPunjabi()">
+        <app-letterrandomenglish *ngIf="selectedRandomQuestion" [randomQuestion]="selectedRandomQuestion" (resetquestions)="onClickResetQuestion()"></app-letterrandomenglish>
+    </div>
+</div>

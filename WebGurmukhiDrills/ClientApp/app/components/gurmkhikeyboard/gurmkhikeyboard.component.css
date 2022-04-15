@@ -1,0 +1,36 @@
+﻿button {
+    font-size: 1.4em;
+}
+
+.keyboardbk {
+}
+
+.kybinputtext {
+    font-size: 1.7em;
+    width: 95%;
+}
+
+.keyboardbkfloat {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    z-index: 100;
+}
+
+.keyboardbkfloattextarea {
+    position: absolute;
+    left: 10px;
+    top: 80px;
+    z-index: 100;
+}
+
+.keyboardrow {
+    
+}
+
+.nopaddingnomargin {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+
+}

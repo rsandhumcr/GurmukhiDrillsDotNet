@@ -1,0 +1,52 @@
+﻿<div class="row">
+    <div class="col-sm-2 hidden-xs">
+        <label></label>Category
+    </div>
+    <div class="col-sm-6 col-xs-9 ">
+        <select class="form-control" [(ngModel)]="selectedCategoryId" (change)="onCategoryChange($event)">
+            <option value="0">Please select a cateogry</option>
+            <option *ngFor="let catitm of categoryData" [ngValue]="catitm.id">
+                {{catitm.name}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm-3 col-xs-3 margintop5">
+        <button class="btn btn-xs btn-primary" (click)="onCatAdd()"><span class='glyphicon glyphicon-plus'></span></button>
+        <button class="btn btn-xs btn-success" (click)="onCatEdit()" [disabled]="selectedCategoryId < 1"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button class="btn btn-xs btn-danger" (click)="onCatDelete()" [disabled]="canDeleteCat()"><span class='glyphicon glyphicon-remove'></span></button>
+    </div>
+</div>
+<div class="row margintop3">
+    <div class="col-sm-2 hidden-xs">SubCategory</div>
+    <div class="col-sm-6 col-xs-9">
+        <select class="form-control" [(ngModel)]="selectedSubCategoryId" (change)="onSubCategoryChange($event)">
+            <option value="0">Please select a subcategory</option>
+            <option *ngFor="let subcatitm of subcategoryData" [ngValue]="subcatitm.id">
+                {{subcatitm.name}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm-3 col-xs-3 margintop5">
+        <button class="btn btn-xs btn-primary" (click)="onSubCatAdd()" [disabled]="selectedCategoryId < 1"><span class='glyphicon glyphicon-plus'></span></button>
+        <button class="btn btn-xs btn-success" (click)="onSubCatEdit()" [disabled]="selectedSubCategoryId < 1"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button class="btn btn-xs btn-danger" (click)="onSubCatDelete()" [disabled]="canDeleteSubCat()"><span class='glyphicon glyphicon-remove'></span></button>
+    </div>
+</div>
+<div class="row margintop3">
+    <div class="col-sm-2 hidden-xs">
+        <label></label>Translation
+    </div>
+    <div class="col-sm-6 col-xs-9">
+        <select class="form-control" [(ngModel)]="selectedTransId" (change)="onTranslationChange($event)">
+            <option value="0">Please select a translation</option>
+            <option *ngFor="let tranitm of wordtranslationData.listTransation" [ngValue]="tranitm.id">
+                {{tranitm.english}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm-3 col-xs-3 margintop5">
+        <button class="btn btn-xs btn-primary" (click)="onTranAdd()" [disabled]="selectedSubCategoryId < 1"><span class='glyphicon glyphicon-plus'></span></button>
+        <button class="btn btn-xs btn-success" (click)="onTranEdit()" [disabled]="selectedTransId < 1"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button class="btn btn-xs btn-danger" (click)="onTranDelete()" [disabled]="selectedTransId < 1"><span class='glyphicon glyphicon-remove'></span></button>
+    </div>
+</div>

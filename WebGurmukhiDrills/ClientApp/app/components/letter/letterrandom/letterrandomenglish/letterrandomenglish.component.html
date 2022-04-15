@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <span>Enter text to match the translation. The feedback text blue is correct and red is incorrect.</span>
+        <div >
+            <label class="largertext">{{randomQuestion?.translation?.punjabi}}</label>
+        </div>
+        <div *ngIf="randomQuestion?.anwsered">
+            <label class="englishanwser" >{{randomQuestion?.translation?.english}} - ({{randomQuestion?.translation?.equivalentEnglish}})</label>
+        </div>
+        <div *ngIf="!randomQuestion?.anwsered">
+            <app-letterrandomerror [inputletter]="randomQuestion?.givenAnwser.split('')" [wrongindex]="this.wrongIndex"></app-letterrandomerror>
+        </div>
+        <div>
+            <input class="translationtext largertext" [disabled]="randomQuestion?.anwsered" type="text" [(ngModel)]="randomQuestion.givenAnwser" (ngModelChange)="onTextChange($event)" placeholder="Enter translation" />
+        </div>
+        <div>{{randomQuestion.feedback.length}}</div>
+        <button class="btn btn-sm btn-danger" (click)="onClickResetQuestion()">Reset Questions</button>
+        <div *ngFor="let feedback of randomQuestion.feedback; let i = index"><span *ngIf="i<10">{{feedback}}</span></div>
+    </div>
+</div>

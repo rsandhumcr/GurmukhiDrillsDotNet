@@ -1,0 +1,9 @@
+﻿<h3>Letter Mulitple Choice</h3>
+<div *ngIf="!showQuestions">
+    <p>This page will allow you to select letter groupings to create mulitple choice questions. Select the checkboxes and then click 'Generate Questions' button.</p>
+</div>
+<app-lettergroupselectionlist *ngIf="!showQuestions" [titlehead]="'Group Selection'" (processselection)="onGroupSelection($event)" 
+                              [buttonlabel]="'Generate Questions'" 
+                              ></app-lettergroupselectionlist>
+<app-multiplechoice *ngIf="showQuestions" [questions]="question" [selectedQuestion]="firstQuestion"></app-multiplechoice>
+<button class="btn btn-sm btn-danger" *ngIf="showQuestions" (click)="onClickResetQuestion()">Reset Questions</button>

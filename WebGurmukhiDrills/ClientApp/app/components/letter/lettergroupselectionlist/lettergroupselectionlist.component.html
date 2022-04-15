@@ -1,0 +1,16 @@
+﻿<h5>{{titlehead}}</h5>
+
+<div class="row leftmargin">
+    <div *ngFor="let groupsel of groupseletion; let i = index;">
+        <div class="col-xs-3">
+            <div class="">
+                    <input type="checkbox" [value]="groupsel.groupType" [ngModel]="status"
+                           (ngModelChange)="handleChange(groupsel.groupType, i, $event )"
+                           class="lettergrpchk"/>
+                <span class="lettergrpname">{{groupsel?.groupName}}</span>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<button class="btn btn-primary margintop15" (click)="onShowSelected()" >{{buttonlabel}}</button>

@@ -1,0 +1,27 @@
+﻿img.letter {
+    height: 150px;
+    /*float: left;*/
+}
+
+
+.punjabiletter {
+    font-size: 2.5em;
+}
+
+.englishletter {
+    font-size: 2.2em;
+}
+
+.lettertemplate {
+    min-height: 300px;
+    max-height: 550px;
+}
+
+.playbtn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.leftmargin5 {
+    margin-left: 7px;
+}

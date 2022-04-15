@@ -1,0 +1,57 @@
+﻿<div [hidden]="!requestSent">
+    <div>Request for {{this.categoryName.value}} has been sent</div>
+</div>
+<div [hidden]="requestSent">
+    <form>
+        <h3>Category</h3>
+        <h4 *ngIf="!newMode">Edit</h4>
+        <h4 *ngIf="newMode">New</h4>
+        <form [formGroup]="categoryForm" novalidate>
+            <div class="">
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="id">Category Id</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="categoryId" formControlName="categoryId" placeholder="Category Id" type="text" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-2">
+                        <label for="categoryName">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="categoryName" formControlName="categoryName" placeholder="Category Name" type="text" />
+                        <span class="errortext" *ngIf="validateCategoryName() && categoryForm.controls.categoryName?.errors?.required">Category name is required</span>
+                        <span class="errortext" *ngIf="validateCategoryName() && categoryForm.controls.categoryName?.errors?.minlength">Length can not be less than 3 characters</span>
+                        <span class="errortext" *ngIf="validateCategoryName() && categoryForm.controls.categoryName?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                    </div>
+                </div>
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="modifiyby">Modified By</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="modifiedBy" formControlName="modifiedBy" placeholder="Modified By" type="text" />
+                    </div>
+                </div>
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="modifiedOn">Modified On</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="modifiedOn" formControlName="modifiedOn" placeholder="Modified On" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <button class="btn btn-xs btn-success" *ngIf="newMode" [disabled]="categoryForm.invalid" (click)="onCreateCategory()">Create</button>
+                    <button class="btn btn-xs btn-success" *ngIf="!newMode" [disabled]="categoryForm.invalid" (click)="onUpdateCategory()">Update</button>
+                    <button class="btn btn-xs btn-danger">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </form>
+</div>

@@ -1,0 +1,4 @@
+﻿<button class="btn btn-sm questionselectbtn" [ngClass]="setBtnClass(question)" *ngFor="let question of questions.listQuestion; let i = index;" 
+        (click)="onSetQuestion(question, i)">
+    Q{{i + 1| number:'2.0'}}
+</button>

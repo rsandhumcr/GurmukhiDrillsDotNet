@@ -1,0 +1,16 @@
+﻿.leftmargin {
+    margin-left: 10px;
+}
+
+.questionsection {
+    min-height: 75px;
+}
+
+.anwsersection {
+    min-height: 25px;
+}
+
+.questionblock {
+    margin: 0 auto;
+    width: 80%;
+}

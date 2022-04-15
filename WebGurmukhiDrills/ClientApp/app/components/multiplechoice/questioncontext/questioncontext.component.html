@@ -1,0 +1,48 @@
+﻿<div class="sectionmxwidth">
+    <div *ngFor="let layout of layoutContexts">
+        <div [ngSwitch]="layout.contentType">
+            <div *ngSwitchCase="1">
+                <div class="row context1" [ngClass]="applycontextclass()">
+                    <div class="col-sm-3 hidden-xs context1label">{{layout.label}}</div>
+                    <div class="col-sm-9 context1text">{{layout.content}}</div>
+                </div>
+            </div>
+            <div *ngSwitchCase="2">
+                <div class="row">
+                    <div class="col-sm-9"  [ngClass]="applycontextclass()">
+                        <button class="btn btn-primary btn-xs playbtn context2button" (click)="onPlayAudio(audiopath , layout.content)">
+                            <span class="glyphicon glyphicon-music"></span>
+                        </button><span class="hidden-xs context2text">{{layout.label}}</span>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngSwitchCase="3">
+                <div class="row"  [ngClass]="applycontextclass()">
+                    <div class="col-sm-9">
+                        <img class="mxwidth context3image" src="{{imagepath}}/{{layout.content}}"/>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="4">
+                <div class="row"  [ngClass]="applycontextclass()">
+                    <div class="col-sm-9">
+                        <img class="mxwidth context4image" src="{{imagepath}}/{{layout.content}}"/>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="5">
+                <div class="row"  [ngClass]="applycontextclass()">
+                    <div class="col-sm-3 hidden-xs context5label">{{layout.label}}</div>
+                    <div class="col-sm-9"><span class="largertext context5text">{{layout.content}}</span></div>
+                </div>
+            </div>
+            <div *ngSwitchDefault>
+                <div class="row"  [ngClass]="applycontextclass()">
+                    <div class="col-sm-3 hidden-xs contextdefaultlabel">{{layout.label}}</div>
+                    <div class="col-sm-9  contextdefaulttext">{{layout.content}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

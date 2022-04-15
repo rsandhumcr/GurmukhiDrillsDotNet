@@ -1,0 +1,57 @@
+﻿<h3>Word List</h3>
+<div>
+    <div>
+        <span>This page will display the a table of the words in the selected category and subcategory.</span>
+    </div>
+    <div>
+        <span>First select the category and then the subcategory.</span>
+    </div>
+    <div class="row margintop5">
+        <div class="col-sm-6 col-xm-12">
+            <app-categoryselect (cateogryselected)="onCateogryselected($event)" (subcateogryselected)="onSubcateogryselected($event)"></app-categoryselect>
+        </div>
+    </div>
+    <h3>{{categorynane}}</h3>
+    <h4>{{subcategorynane}}</h4>
+    <div *ngIf="!wordtranslationData?.listTransation">
+        Select a catgory and subcateogry to display list.
+    </div>
+</div>
+<div *ngIf="!!wordtranslationData?.listTransation" class="row">
+    <div class="col-xs-12">
+        <div *ngIf="!!wordtranslationData?.listTransation && wordtranslationData?.listTransation.length == 0">
+            No data for this subcategory.
+        </div>
+        <table *ngIf="!!wordtranslationData?.listTransation && wordtranslationData?.listTransation.length > 0" class="table table-striped wordlist">
+            <thead>
+            <tr>
+                <th class="hidden-xs">Image</th>
+                <th>English</th>
+                <th>Translation</th>
+                <th>Punjabi</th>
+                <th>Audio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="wordlist{{word.id}}" *ngFor="let word of wordtranslationData?.listTransation; let i = index;">
+                <td class="hidden-xs">
+                    <span *ngIf="word.imageFileName">
+                        <img class="listimg" src="{{wordtranslationData.imagePrefix}}/{{word.imageFileName}}"/>
+                    </span>
+                </td>
+                <td>{{word.english}}</td>
+                <td>{{word.character}}</td>
+                <!--<td >{{word.equivalent}}</td>-->
+                <td><span class="punjabiword"></span>{{word.punjabi}}</td>
+                <td>
+                    <span *ngIf="!!word.audioFileName">
+                        <button class="btn btn-primary btn-xs playbtn" (click)="onClickPlayAudio(wordtranslationData.audioPrefix , word.audioFileName)">
+                            <span class="glyphicon glyphicon-music"></span>
+                        </button><span>Sound</span>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

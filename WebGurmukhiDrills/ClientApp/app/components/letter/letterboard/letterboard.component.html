@@ -1,0 +1,31 @@
+﻿<h3>Letter Board</h3>
+<p>Display letter groups selected from the drop down list.</p>
+<div class="form-group">
+    <span>
+        <label>Group selections</label>
+        <lettergroup-selection [selection]="selection" (onSelected)="onSelection($event)"></lettergroup-selection>
+    </span>
+</div>
+<div *ngIf="data" class="leftmargin5">
+    <div class="row">
+        <h4>{{data?.groupTitle}} Group</h4>
+        <div *ngIf="!!data?.letters">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 lettertemplate" *ngFor="let letter of data?.letters">
+                <div>{{letter.order}} {{letter.name}}</div>
+                <div>
+                    <span class="punjabiletter">{{letter.punjabi}}</span>
+                    <span class="englishletter">{{letter.english}}</span>
+                </div>
+                <div>
+                    <span *ngIf="letter.image"><img class="letter" src="{{data.imagePrefix}}/{{letter.image}}"/></span>
+                </div>
+                <div *ngIf="letter.nameFile">
+                    <button class="btn btn-primary btn-xs playbtn" (click)="onPlayAudio(data.audioPrefix , letter.nameFile)"><span class="glyphicon glyphicon-music"></span></button><span>Name</span>    
+                </div>
+                <div *ngIf="letter.pronouncefile">
+                    <button class="btn btn-primary btn-xs playbtn" (click)="onPlayAudio(data.audioPrefix , letter.pronouncefile)"><span class="glyphicon glyphicon-music"></span></button><span>Sound</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿<h3>Word Multiple Choice</h3>
+<div *ngIf="!showQuestions">
+    <div>
+        <span>This page will generate mulitple choice question from the selected category and subcategory.</span>
+    </div>
+    <div>
+        <span>Select the language of the questions, difficulty level, the category and then subcategory.</span>
+    </div>
+    <div>
+        <span>Hint : In the easy level you can use the audio button (if it has a audio file) to match the options.</span>
+    </div>
+    <div class="row margintop5">
+        <div class="col-sm-2  hidden-xs"><label>Difficulty</label>
+        </div>
+        <div class="col-sm-3 col-xs-8">
+            <select class="form-control" [(ngModel)]="difficulty">
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+            </select>
+        </div>
+    </div>
+    <div class="row margintop3">
+        <div class="col-sm-2 col-xs-4">
+            <label>Show Image</label>
+        </div>
+        <div class="col-sm-1 col-xs-8">
+            <input type="checkbox" [(ngModel)]="showImage"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-xs-4">
+            <label>Questions in English</label>
+        </div>
+        <div class="col-sm-1 col-xs-8">
+            <input name="punjabiRadio" class="upshift langradio" type="radio" value="punjabi" [(ngModel)]="language"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-xs-4">
+            <label>Questions in Punjabi</label>
+        </div>
+        <div class="col-sm-1 col-xs-8">
+            <input class="upshift langradio" type="radio" value="english" [(ngModel)]="language"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xm-12">
+            <app-categoryselect (cateogryselected)="onCateogryselected($event)" (subcateogryselected)="onSubcateogryselected($event)"></app-categoryselect>
+        </div>
+    </div>
+</div>
+<div *ngIf="showQuestions">
+    <h3>{{categorynane}}</h3>
+    <h4>{{subcategorynane}}</h4>
+    <app-multiplechoice [questions]="question" [selectedQuestion]="firstQuestion"></app-multiplechoice>
+    <button class="btn btn-sm btn-danger" *ngIf="showQuestions" (click)="onClickResetQuestion()">Reset Questions</button>
+</div>

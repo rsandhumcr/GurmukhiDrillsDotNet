@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+    error : Exception: Call to Node module failed with error: ReferenceError: document is not defined
+*@
+<app asp-ng2-prerender-module="ClientApp/dist/main-server">
+    <div class="">
+        <div class="row">
+            <div class="col-sm-2">
+                <div style="background-color: #222; min-height: 800px; color: #9d9d9d">
+                    <div class="main-nav">
+                        <div class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <h5>Loading Gurmukhi Drills....</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10" style="position: relative; left: -30px"> 
+                <img style="width: 110%; max-height: 220px;" src="images/intro/Golden-Temple-Amritsar2.jpg" alt="please wait" />
+                <h1>Exercises</h1>
+                <h2>Loading, please wait........</h2>
+                <img style="max-height: 80px;" src="images/miniwaiting.gif" alt="please wait"/>
+            </div>
+        </div>
+    </div>
+    
+    
+</app>
+@section scripts {
+    
+    <script src="~/dist/vendor.js" asp-append-version="true"></script>
+    <script src="~/dist/main-client.js" asp-append-version="true"></script> 
+}

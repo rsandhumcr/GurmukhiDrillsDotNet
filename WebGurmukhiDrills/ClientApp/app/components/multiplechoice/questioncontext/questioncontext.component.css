@@ -1,0 +1,20 @@
+﻿img.mxwidth {
+    max-height: 160px;
+}
+
+.sectionmxwidth {
+    min-height: 130px;
+}
+
+.playbtn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.largertext {
+    font-size: 1.5em;
+}
+
+.anwsrcntxt div img {
+    max-height: 50px;
+}

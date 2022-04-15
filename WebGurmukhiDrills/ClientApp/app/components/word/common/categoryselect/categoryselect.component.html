@@ -1,0 +1,27 @@
+﻿<div>
+    <div class="row margintop3">
+        <div [ngClass]="getLabelClass()" ><label>Category</label></div>
+        <div [ngClass]="getControlClass()" >
+            <select class="form-control" [(ngModel)]="selectedCategoryId" (change)="onCategoryChange($event)">
+                <option value="0">Please select cateogry</option>
+                <option *ngFor="let catitm of categoryData" [ngValue]="catitm.id">
+                    {{catitm.name}}
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-2 col-xs-2">
+            
+        </div>
+    </div>
+    <div class="row margintop3">
+        <div [ngClass]="getLabelClass()" > <label>SubCategory</label></div>
+        <div [ngClass]="getControlClass()" >
+            <select class="form-control" [(ngModel)]="selectedSubCategoryId" (change)="onSubCategoryChange($event)">
+                <option value="0">Please select subcategory</option>
+                <option *ngFor="let subcatitm of subcategoryData" [ngValue]="subcatitm.id">
+                    {{subcatitm.name}}
+                </option>
+            </select>
+        </div>
+    </div>    
+</div>

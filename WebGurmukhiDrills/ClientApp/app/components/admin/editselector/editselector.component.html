@@ -1,0 +1,27 @@
+﻿<app-wordselection (selectionData)="onSelectionData($event)"></app-wordselection>
+<hr />
+<div *ngIf="isLoading">
+    <img class="waitingicon" src="/images/miniwaiting.gif" alt="waiting" />
+    <span>Waiting......</span>
+</div>
+
+<div *ngIf="!isLoading">
+    <div *ngIf="!isDelete">
+        <div *ngIf="!!categoryData?.id">
+            <app-categoryedit [newMode]="isNew" [data]="categoryData"></app-categoryedit>
+        </div>
+        <div *ngIf="!!subCategoryData?.id">
+            <app-subcategoryedit [newMode]="isNew" [data]="subCategoryData"></app-subcategoryedit>
+        </div>
+        <div *ngIf="!!wordTranslationData?.id">
+            <app-translateedit [newMode]="isNew" [data]="wordTranslationData"></app-translateedit>
+        </div>
+    </div>
+    <div *ngIf="isDelete">
+        <app-deleteconfirm
+            [categoryData]="categoryData"
+            [subCategoryData]="subCategoryData"
+            [wordTranslationData]="wordTranslationData" >
+        </app-deleteconfirm>
+    </div>
+</div>

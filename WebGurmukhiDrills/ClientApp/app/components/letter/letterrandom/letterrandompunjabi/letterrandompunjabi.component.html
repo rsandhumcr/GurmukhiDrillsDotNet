@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <span>Enter text to match the translation via the keypad. The feedback text blue is correct and red is incorrect.</span>
+        </div>        
+        <div>
+            <label class="englishtext" >{{randomQuestion?.translation?.english}} - ({{randomQuestion?.translation?.equivalentEnglish}})</label>
+        </div>
+        <div *ngIf="randomQuestion?.anwsered">
+            <label class="punjabianwser">{{randomQuestion?.translation?.punjabi}}</label>
+        </div>
+        <div *ngIf="!randomQuestion?.anwsered">
+            <app-letterrandomerror [inputletter]="randomQuestion?.givenAnwser.split('')" [wrongindex]="this.wrongIndex"></app-letterrandomerror>
+        </div>
+        <app-gurmkhikeyboard [disabled]="randomQuestion?.anwsered" 
+                             [inputmode]="true"
+                             [currentText]="randomQuestion?.givenAnwser"
+                             [showKeyboardButton]="false"
+                             [floatkeyboard]="false"
+                             (textChange)="onTextChange($event)">
+        </app-gurmkhikeyboard>
+        <div>{{randomQuestion?.feedback?.length}}</div>
+        <button class="btn btn-sm btn-danger" (click)="onClickResetQuestion()">Reset Questions</button>
+        <div *ngFor="let feedback of randomQuestion?.feedback; let i = index"><span *ngIf="i<10">{{feedback}}</span></div>
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿span {
+    display: inline;
+}
+input {
+    display: inline;
+}
+
+.leftmargin {
+    margin-left: 3px;
+}
+
+.margintop15 {
+    margin-top: 15px;
+}

@@ -1,0 +1,22 @@
+﻿<!--<h2>{{questions?.title}}</h2>-->
+<h4 class="questiondescription">{{questions?.description}}</h4>
+<div class="row">
+    <div class="col-sm-12">
+        <span>Click the 'Option X' button you believe to be correct. You can select questions from the question selection buttons below or click 'Next Question' button after answering.</span>
+    </div>
+</div>
+<div class="row topmargin10">
+    <div class="col-sm-12">
+        <app-questionselection [questions]="questions" (setquestion)="onSetQuestion($event)">
+        </app-questionselection>
+    </div>
+</div>
+<div class="row topmargin10">
+    <div class="col-sm-12">
+        <app-question [question]="selectedQuestion" [audiopath]="questions?.audioPrefix" 
+                      [imagepath]="questions?.imagePrefix"
+                      (nextQuestion)="onClickNextQuestion()"
+                      ></app-question>
+    </div>
+</div>
+

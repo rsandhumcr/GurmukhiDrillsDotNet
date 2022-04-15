@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/vendor/toastr/toastr.min.css",
+    "inputFiles": [
+      "wwwroot/vendor/toastr/toastr.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/one-page-wonder.min.css",
+    "inputFiles": [
+      "wwwroot/css/one-page-wonder.css"
+    ]
+  }
+]

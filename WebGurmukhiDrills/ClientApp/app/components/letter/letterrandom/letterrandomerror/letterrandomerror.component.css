@@ -1,0 +1,14 @@
+﻿:host {
+    min-height: 50px
+}
+.wrongtext {
+    color: red;
+}
+
+.correcttext {
+    color: blue;
+}
+
+.feedbacktext {
+    font-size: 1.4em;
+}

@@ -1,0 +1,96 @@
+﻿<h3>Match Words</h3>
+<div class="randomdescription" *ngIf="!showQuestions">
+    <div>
+        <span>This page will display letters depending upon the category and subcategory selected. </span>
+    </div>
+    <div>
+        <span>You can choose the language the anwser are in via the language radio buttons.</span>
+    </div>
+    <div class="row margintop5">
+        <div class="col-sm-2">
+            <label>Anwser in Punjabi</label>
+        </div>
+        <div class="col-sm-2 ">
+            <input name="punjabiRadio" class="upshift langradio" type="radio" value="punjabi" [(ngModel)]="language" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label>Anwser in English</label>
+        </div>
+        <div class="col-sm-2 ">
+            <input class="upshift langradio" type="radio" value="english" [(ngModel)]="language"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xm-12">
+            <app-categoryselect (cateogryselected)="onCateogryselected($event)" (subcateogryselected)="onSubcateogryselected($event)"></app-categoryselect>
+        </div>
+    </div>
+</div>
+<div class="randomquestions" *ngIf="showQuestions">
+    <div>
+        <span>You will need to enter the corrsponding translation into the text field below.</span>
+        <span>You will get instant feedback with blue and red text.</span>
+        <span>When you have anwsered the question you select another question from the question selection buttons or click 'Next Question' button.</span>
+        <span>You can click the hint button if you get stuck.</span>
+    </div>
+    <div>
+        <span>Please take care when using <strong>vowels carriers</strong> as they are represented as one character on the keypad.</span>
+    </div>
+    <hr/>
+    <h3>{{categorynane}}</h3>
+    <h4>{{subcategorynane}}</h4>
+    <app-letterrandomselection [questions]="randomLetterData.questions" (indexselection)="onClickIndexselection($event)"></app-letterrandomselection>
+    <hr />
+    <h4>Question {{currentIndex + 1}}</h4>
+    <div class="row" *ngIf="selectedWordTranslation.imageFileName" >
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8"><img class="listimg" src="{{wordResultset.imagePrefix}}/{{selectedWordTranslation.imageFileName}}" /></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">English</div>
+        <div class="col-sm-8">{{selectedWordTranslation.english}}</div>
+    </div>
+    <div class="row" *ngIf="isPunjabi()">
+        <div class="col-sm-2">Translation</div>
+        <div class="col-sm-8">{{selectedWordTranslation.character}}</div>
+    </div>
+    <div class="row" *ngIf="!isPunjabi()">
+        <div class="col-sm-2">Punajbi</div>
+        <div class="col-sm-8"><span class="punjabiword"></span>{{selectedWordTranslation.punjabi}}</div>
+    </div>
+    <div class="row" *ngIf="!!selectedWordTranslation.audioFileName">
+        <div class="col-sm-2">
+            <button class="btn btn-primary btn-xs playbtn" (click)="onClickPlayAudio(wordResultset.audioPrefix , selectedWordTranslation.audioFileName)">
+                <span class="glyphicon glyphicon-music"></span>
+            </button>
+        </div>
+        <div class="col-sm-8">Sound</div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-8">    
+            <button class="btn btn-xs btn-warning" (click)="onClickNextQuestion()">Next Question</button>
+            <button class="btn btn-xs btn-success" (click)="onClickHint()">Hint</button>
+            <button class="btn btn-xs btn-primary" (click)="onClickShowAnwser()">Show Anwser</button>
+            <div>
+                <span class="hinttext">{{this.selectedRandomQuestion.feedback[0]}}</span>    
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div *ngIf="isPunjabi()">
+                <app-letterrandompunjabi *ngIf="selectedRandomQuestion" [randomQuestion]="selectedRandomQuestion" (resetquestions)="onClickResetQuestion()"></app-letterrandompunjabi>
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div *ngIf="!isPunjabi()">
+                <app-letterrandomenglish *ngIf="selectedRandomQuestion" [randomQuestion]="selectedRandomQuestion" (resetquestions)="onClickResetQuestion()"></app-letterrandomenglish>
+            </div>            
+        </div>
+    </div>
+</div>

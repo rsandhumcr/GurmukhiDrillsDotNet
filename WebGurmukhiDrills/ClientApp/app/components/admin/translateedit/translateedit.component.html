@@ -1,0 +1,171 @@
+﻿<div [hidden]="!requestSent">
+    <div>Request for {{this.data.english}} has been sent</div>
+</div>
+<div [hidden]="requestSent">
+    <h3>Translation</h3>
+    <h4 *ngIf="!newMode">Edit</h4>
+    <h4 *ngIf="newMode">New</h4>
+    <p>You can enter gurmukhi text by clicking the keypad button next to the text input field.</p>
+    <form [formGroup]="translationForm" novalidate>
+        <div class="">
+            <div class="row form-group" *ngIf="!newMode">
+                <div class="col-sm-2">
+                    <label for="translationId">Translation Id</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="translationId" formControlName="translationId" placeholder="Translation Id" type="text" />
+                </div>
+            </div>
+            <app-categoryselect [selectedSubCategoryId]="subcategoryId.value"
+                                [inEdit]="'true'"
+                                (cateogryselected)="onCateogryselected($event)"
+                                (subcateogryselected)="onSubcateogryselected($event)">
+            </app-categoryselect>
+            <div class="row form-group">
+                <div [hidden]='"true"'>
+                    <div class="col-sm-2">
+                        <label for="subcategoryId">Subcategory Id</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="subcategoryId" formControlName="subcategoryId" placeholder="Subcategory Id" type="text" />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-8">
+                    <span class="errortext" *ngIf="translationForm.controls.subcategoryId?.errors?.selectionrequired">Subcategory is required</span>
+                </div>
+            </div>
+
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="english">English</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="english" formControlName="english" placeholder="English" type="text" />
+                    <span class="errortext" *ngIf="validateEnglishName() && translationForm.controls.english?.errors?.required">English is required</span>
+                    <span class="errortext" *ngIf="validateEnglishName() && translationForm.controls.english?.errors?.minlength">Length can not be less than 3 characters</span>
+                    <span class="errortext" *ngIf="validateEnglishName() && translationForm.controls.english?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="punjabi">Punjabi</label>
+                </div>
+                <div class="col-sm-8">
+                    <app-gurmkhikeyboard [inputmode]="true"
+                                         [showKeyboardButton]="true"
+                                         [floatkeyboard]="false"
+                                         [currentText]="punjabi.value"
+                                         (textChange)="onPunjabiTextChange($event)">
+                    </app-gurmkhikeyboard>
+                    <div [hidden]="'true'">
+                        <input class="form-control" id="punjabi" formControlName="punjabi" placeholder="Punjabi" type="text" />
+                    </div>
+                    <span class="errortext" *ngIf="validatePunjabiName() && translationForm.controls.punjabi?.errors?.required">Punjabi is required</span>
+                    <span class="errortext" *ngIf="validatePunjabiName() && translationForm.controls.punjabi?.errors?.minlength">Length can not be less than 3 characters</span>
+                    <span class="errortext" *ngIf="validatePunjabiName() && translationForm.controls.punjabi?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="character">Character</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="character" formControlName="character" placeholder="Character" type="text" /> <button class="btn btn-xs btn-primary" (click)="onClickTranslation()" >Get Translation</button>
+                    <span class="errortext" *ngIf="validateCharacter() && translationForm.controls.character?.errors?.required">Character is required</span>
+                    <span class="errortext" *ngIf="validateCharacter() && translationForm.controls.character?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="equivalent">Equivalent</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="equivalent" formControlName="equivalent" placeholder="Equivalent" type="text" />
+                    <span class="errortext" *ngIf="validateEquivalent() && translationForm.controls.equivalent?.errors?.required">Equivalent is required</span>
+                    <span class="errortext" *ngIf="validateEquivalent() && translationForm.controls.equivalent?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="description">Description</label>
+                </div>
+                <div class="col-sm-8">
+                    <div [hidden]="'true'">
+                        <input class="form-control" id="description" formControlName="description" placeholder="Description" type="text" />
+
+                    </div>
+                    <app-gurmkhikeyboard [inputmode]="true"
+                                         [showKeyboardButton]="true"
+                                         [floatkeyboard]="false"
+                                         [currentText]="description.value"
+                                         (textChange)="onDescriptionTextChange($event)">
+                    </app-gurmkhikeyboard>
+                    <span class="errortext" *ngIf="validateDescription() && translationForm.controls.description?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="ordernumber">Order Number</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="ordernumber" formControlName="ordernumber" placeholder="Order Number" type="text" />
+                    <span class="errortext" *ngIf="validateOrderNumber() && translationForm.controls.ordernumber?.errors?.pattern">Order number must be a number</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="audioFileName">Audio Url</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="audioFileName" formControlName="audioFileName" placeholder="Audio Url" type="text" />
+                    <span class="errortext" *ngIf="validateAudioFilename() && translationForm.controls.audioFileName?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    <label for="imageFileName">Image Url</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="imageFileName" formControlName="imageFileName" placeholder="Image Url" type="text" />
+                    <span class="errortext" *ngIf="validateImageFileName() && translationForm.controls.imageFileName?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                </div>
+            </div>
+
+            <div class="row form-group" *ngIf="!newMode">
+                <div class="col-sm-2">
+                    <label for="modifiedBy">Modified By</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="modifiedBy" formControlName="modifiedBy" placeholder="Modified By" type="text" />
+                </div>
+            </div>
+
+            <div class="row form-group" *ngIf="!newMode">
+                <div class="col-sm-2">
+                    <label for="modifiedOn">Modified On</label>
+                </div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="modifiedOn" formControlName="modifiedOn" placeholder="Modified On" type="text" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <button class="btn btn-xs btn-success" *ngIf="newMode" [disabled]="translationForm.invalid" (click)="onTranslationCreate()">Create</button>
+                <button class="btn btn-xs btn-success" *ngIf="!newMode" [disabled]="translationForm.invalid" (click)="onTranslationUpdate()">Update</button>
+                <button class="btn btn-xs btn-danger">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

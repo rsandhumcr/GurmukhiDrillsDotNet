@@ -1,0 +1,25 @@
+﻿.margintop15 {
+    margin-top: 15px;
+}
+
+header.masthead {
+    background: url('/images/intro/Golden-Temple-Amritsar2.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    width: 110%;
+    position: relative;
+    left: -25px;
+}
+
+    header.masthead > .overlay {
+        padding: 5rem 0;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+
+.text-white {
+    color: white;
+}

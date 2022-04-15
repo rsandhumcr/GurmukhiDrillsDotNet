@@ -1,0 +1,94 @@
+﻿<div [hidden]="!requestSent">
+    <div>Request for {{this.subcategoryname.value}} has been sent</div>
+</div>
+<div [hidden]="requestSent">
+
+    <h3>SubCategory</h3>
+    <h4 *ngIf="!newMode">Edit</h4>
+    <h4 *ngIf="newMode">New</h4>
+        <form [formGroup]="subcategoryForm" novalidate>
+            <div class="">
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="subcategoryId">Subcategory Id</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="subcategoryId" formControlName="subcategoryId" placeholder="subcategory Id" type="text" />
+                    </div>
+                </div>
+                <div class="row form-group" >
+                    <div class="col-sm-2">
+                        <label for="categoryId">Category</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select  class="form-control" id="categoryId" formControlName="categoryId" class="form-control">
+                            <option value="0" >Select Category</option>
+                            <option *ngFor="let select of this.categorySelection" [ngValue]="select.id">{{select.name}}</option>
+                        </select>
+                        <span class="errortext" *ngIf="subcategoryForm.controls.categoryId?.errors?.selectionrequired">Category is required</span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-2">
+                        <label for="subcategoryname">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="subcategoryname" formControlName="subcategoryname" placeholder="Subcategory Name" type="text" />
+                        <span class="errortext" *ngIf="validateSubCategoryName() && subcategoryForm.controls.subcategoryname?.errors?.required">Subcategory name is required</span>
+                        <span class="errortext" *ngIf="validateSubCategoryName() && subcategoryForm.controls.subcategoryname?.errors?.minlength">Length can not be less than 3 characters</span>
+                        <span class="errortext" *ngIf="validateSubCategoryName() && subcategoryForm.controls.subcategoryname?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-2">
+                        <label for="ordernumber">Order Number</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="ordernumber" formControlName="ordernumber" placeholder="Order Number" type="text" />
+                        <span class="errortext" *ngIf="validateOrderNumber() && subcategoryForm.controls.ordernumber?.errors?.required">Order number is required</span>
+                        <span class="errortext" *ngIf="validateOrderNumber() && subcategoryForm.controls.ordernumber?.errors?.pattern">Order number must be a number</span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-2">
+                        <label for="urlpath">url</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="urlpath" formControlName="urlpath" placeholder="url" type="text" />
+                        <span class="errortext" *ngIf="validateUrl() && subcategoryForm.controls.urlpath?.errors?.required">Url is required</span>
+                        <span class="errortext" *ngIf="validateUrl() && subcategoryForm.controls.urlpath?.errors?.minlength">Length can not be less than 3 characters</span>
+                        <span class="errortext" *ngIf="validateUrl() && subcategoryForm.controls.urlpath?.errors?.maxlength">Length can not be greater than 250 characters</span>
+                    </div>
+                </div>
+
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="modifiedby">Modified By</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="modifiedby" formControlName="modifiedby" placeholder="Modified By" type="text" />
+                    </div>
+                </div>
+
+                <div class="row form-group" *ngIf="!newMode">
+                    <div class="col-sm-2">
+                        <label for="modifiedon">Modified On</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="modifiedon" formControlName="modifiedon" placeholder="Modified On" type="text" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <button class="btn btn-xs btn-success" *ngIf="newMode" [disabled]="subcategoryForm.invalid"  (click)="onSubCategoryCreate()" >Create</button>
+                    <button class="btn btn-xs btn-success" *ngIf="!newMode" [disabled]="subcategoryForm.invalid" (click)="onSubCategoryUpdate()" >Update</button>
+                    <button class="btn btn-xs btn-danger">Cancel</button>
+                </div>
+            </div>
+        </form>
+</div>
